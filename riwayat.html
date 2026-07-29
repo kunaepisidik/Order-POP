@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riwayat - Order POP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="app-body">
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Riwayat</p>
+      <h1>Status Order</h1>
+    </div>
+    <a class="icon-btn" href="dashboard.html">Kembali</a>
+  </header>
+
+  <main class="mobile-container">
+    <div id="message" class="message hidden"></div>
+    <section class="history-toolbar">
+      <a id="addOrderBtn" class="btn primary" href="order.html">Tambah Orderan</a>
+    </section>
+    <div id="historyLoading" class="history-loading">
+      <button class="btn secondary loading" type="button" disabled>
+        <span class="btn-spinner" aria-hidden="true"></span>
+        <span>Loading Data...</span>
+      </button>
+    </div>
+    <section id="historyList" class="card-list"></section>
+    <p id="emptyState" class="empty-state hidden">Belum ada orderan yang tercatat.</p>
+  </main>
+  <script defer src="assets/js/ui.js"></script>
+  <script type="module" src="assets/js/riwayat.js"></script>
+</body>
+</html>

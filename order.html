@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order - Order POP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="app-body">
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Order</p>
+      <h1>Buat Pesanan</h1>
+    </div>
+    <a class="icon-btn" href="dashboard.html">Kembali</a>
+  </header>
+
+  <main class="mobile-container">
+    <section class="info-card">
+      <h2>Informasi Pesanan</h2>
+      <p>Setiap pesanan hanya berlaku untuk lembar POP yang berisi sama. Apabila memerlukan beberapa lembar POP, dengan ukuran kertas, jumlah lembar, brand, kategori, harga, atau program promosi yang berbeda, setiap lembar harus dibuat sebagai pesanan terpisah dan tidak dapat digabungkan dalam satu pesanan. Ketentuan ini diterapkan untuk menjaga kerapian data serta mempermudah proses pemeriksaan.</p>
+    </section>
+
+    <section class="content-card">
+      <div id="message" class="message hidden"></div>
+      <form id="orderForm" class="form-grid">
+        <label>
+          <span>Ukuran Kertas</span>
+          <select id="ukuranKertas" name="ukuran_kertas" required>
+            <option value="">Pilih Ukuran Kertas</option>
+            <option value="A3">A3</option>
+            <option value="A3 LANDSCAPE">A3 LANDSCAPE</option>
+            <option value="A4">A4</option>
+            <option value="A5">A5</option>
+          </select>
+        </label>
+        <label>
+          <span>Berapa Lembar</span>
+          <input type="text" id="lembar" name="lembar" inputmode="text" placeholder="Contoh: 1, 2BB, 2XBB" required>
+          <small class="field-note">Jika hanya angka misal: 1 maka akan dicetak 1 lembar. Jika menambahkan BB misal: 3BB atau 3XBB maka akan dikali 2, jadi 6 lembar.</small>
+        </label>
+        <label>
+          <span>Brand</span>
+          <input type="text" id="brand" name="brand" placeholder="Contoh: VM, Brand A" required>
+        </label>
+        <label>
+          <span>Kategori</span>
+          <input type="text" id="kategori" name="kategori" placeholder="Contoh: T-Shirt" required>
+        </label>
+        <label>
+          <span>Promo</span>
+          <textarea id="promo" name="promo" rows="5" placeholder="Contoh:&#10;Dari 1.000.000&#10;Jadi 500.000" required></textarea>
+        </label>
+        <button class="btn primary" type="submit">Order</button>
+        <a class="btn secondary" href="dashboard.html">Kembali</a>
+      </form>
+    </section>
+  </main>
+  <script defer src="assets/js/ui.js"></script>
+  <script type="module" src="assets/js/order.js"></script>
+</body>
+</html>

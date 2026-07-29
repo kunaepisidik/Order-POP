@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Order POP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="app-body dashboard-body">
+  <header class="topbar dashboard-topbar">
+    <div>
+      <p class="eyebrow">Dashboard</p>
+      <h1>Order POP</h1>
+    </div>
+    <div class="topbar-actions">
+      <a class="icon-btn" href="profile.html">Profil</a>
+      <button id="logoutBtn" class="icon-btn" type="button" title="Logout">Keluar</button>
+    </div>
+  </header>
+
+  <main class="mobile-container dashboard-container">
+    <section class="dashboard-profile-card">
+      <div class="dashboard-profile-main">
+        <img id="dashboardPhoto" class="dashboard-photo" src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png" alt="Foto profil">
+        <div class="dashboard-profile-copy">
+          <p class="eyebrow">Selamat Datang</p>
+          <h2 id="dashboardName">Karyawan</h2>
+          <p id="dashboardUsername">@username</p>
+        </div>
+      </div>
+      <div class="dashboard-brand-row">
+        <span>Brand</span>
+        <strong id="dashboardBrand">-</strong>
+      </div>
+    </section>
+
+    <section class="dashboard-menu-heading">
+      <p class="eyebrow">Menu Utama</p>
+      <h2>Pilih Layanan</h2>
+    </section>
+
+    <section class="action-grid dashboard-action-grid">
+      <a class="dashboard-menu-tile" href="order.html">
+        <span class="dashboard-menu-icon" aria-hidden="true">+</span>
+        <span class="dashboard-menu-text">
+          <span>Order</span>
+          <strong>Buat Pesanan POP</strong>
+          <small>Kirim detail ukuran, jumlah, brand, kategori, dan promo.</small>
+        </span>
+      </a>
+      <a class="dashboard-menu-tile" href="riwayat.html">
+        <span class="dashboard-menu-icon outline" aria-hidden="true">i</span>
+        <span class="dashboard-menu-text">
+          <span>Riwayat</span>
+          <strong>Lihat Status Orderan</strong>
+          <small>Pantau pesanan yang belum diproses, selesai, atau ditolak.</small>
+        </span>
+      </a>
+    </section>
+  </main>
+  <script defer src="assets/js/ui.js"></script>
+  <script type="module" src="assets/js/dashboard.js"></script>
+</body>
+</html>

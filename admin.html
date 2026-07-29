@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Order POP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="admin-body">
+  <header class="admin-topbar">
+    <div>
+      <p class="eyebrow">Admin</p>
+      <h1>Panel Order POP</h1>
+    </div>
+    <div class="topbar-actions">
+      <a class="icon-btn" href="register.html">Tambah Karyawan</a>
+      <a class="icon-btn" href="profile.html">Profil</a>
+      <button id="logoutBtn" class="icon-btn" type="button">Keluar</button>
+    </div>
+  </header>
+
+  <main class="admin-layout">
+    <aside class="admin-filter">
+      <h2>Daftar Pesanan</h2>
+      <div class="admin-welcome">
+        <span>Sedang Login</span>
+        <strong id="adminWelcomeText">Admin</strong>
+      </div>
+      <p class="muted">Pantau order yang belum diproses, sedang diproses, selesai, dan ditolak.</p>
+      <div class="segmented" role="tablist" aria-label="Filter status">
+        <button class="filter-btn active" type="button" data-filter="semua">Semua</button>
+        <button class="filter-btn" type="button" data-filter="belum diproses">Belum</button>
+        <button class="filter-btn" type="button" data-filter="sedang diproses">Proses</button>
+        <button class="filter-btn" type="button" data-filter="selesai">Selesai</button>
+        <button class="filter-btn" type="button" data-filter="ditolak">Ditolak</button>
+      </div>
+    </aside>
+    <section>
+      <div id="message" class="message hidden"></div>
+      <div id="adminLoading" class="admin-loading">
+        <button class="btn secondary loading" type="button" disabled>
+          <span class="btn-spinner" aria-hidden="true"></span>
+          <span>Loading Data...</span>
+        </button>
+      </div>
+      <div id="adminOrders" class="admin-grid"></div>
+      <p id="emptyState" class="empty-state hidden">Tidak ada pesanan pada status ini.</p>
+    </section>
+  </main>
+
+  <div id="rejectModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="rejectModalTitle">
+    <form id="rejectForm" class="modal-card">
+      <p class="eyebrow">Tolak Order</p>
+      <h2 id="rejectModalTitle">Alasan Penolakan</h2>
+      <label>
+        <span>Alasan</span>
+        <textarea id="rejectReason" rows="5" placeholder="Tulis alasan kenapa orderan ini ditolak" required></textarea>
+      </label>
+      <div class="modal-actions">
+        <button id="cancelRejectBtn" class="btn secondary" type="button">Batal</button>
+        <button id="submitRejectBtn" class="btn primary" type="submit">Simpan Penolakan</button>
+      </div>
+    </form>
+  </div>
+
+  <script defer src="assets/js/ui.js"></script>
+  <script type="module" src="assets/js/admin.js"></script>
+</body>
+</html>

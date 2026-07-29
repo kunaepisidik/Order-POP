@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil - Order POP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="app-body">
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Profil</p>
+      <h1>Data Karyawan</h1>
+    </div>
+    <a id="backLink" class="icon-btn" href="dashboard.html">Kembali</a>
+  </header>
+
+  <main class="mobile-container">
+    <div id="message" class="message hidden"></div>
+    <section class="content-card profile-card">
+      <img id="profilePhoto" class="profile-photo" src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png" alt="Foto profil">
+      <div class="profile-details">
+        <p><strong>Nama</strong><span id="profileNama">-</span></p>
+        <p><strong>Username</strong><span id="profileUsername">-</span></p>
+        <p><strong>Brand</strong><span id="profileBrand">-</span></p>
+      </div>
+      <div class="form-actions">
+        <a class="btn primary" href="perbarui_data.html">Perbarui Data</a>
+        <a id="profileBackButton" class="btn secondary" href="dashboard.html">Kembali</a>
+      </div>
+    </section>
+  </main>
+  <script defer src="assets/js/ui.js"></script>
+  <script type="module" src="assets/js/profile.js"></script>
+</body>
+</html>

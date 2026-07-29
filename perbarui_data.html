@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perbarui Data - Order POP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="app-body">
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Profil</p>
+      <h1>Perbarui Data</h1>
+    </div>
+    <a id="backLink" class="icon-btn" href="profile.html">Kembali</a>
+  </header>
+
+  <main class="mobile-container">
+    <section class="content-card">
+      <div id="message" class="message hidden"></div>
+      <form id="updateProfileForm" class="form-grid">
+        <label>
+          <span>Nama</span>
+          <input type="text" id="nama" name="nama" autocomplete="name" required>
+        </label>
+        <label>
+          <span>Username</span>
+          <input type="text" id="username" name="username" autocomplete="username" required>
+        </label>
+        <label>
+          <span>Brand</span>
+          <input type="text" id="brand" name="brand" required>
+        </label>
+        <label>
+          <span>Kata Sandi</span>
+          <input type="password" id="kataSandi" name="kata_sandi" autocomplete="new-password" minlength="4" placeholder="Kosongkan jika tidak ingin mengubah">
+        </label>
+        <label>
+          <span>Konfirmasi Kata Sandi</span>
+          <input type="password" id="konfirmasiKataSandi" name="konfirmasi_kata_sandi" autocomplete="new-password" minlength="4">
+        </label>
+        <label>
+          <span>Foto</span>
+          <input type="file" id="foto" name="foto" accept="image/*">
+        </label>
+        <div class="file-preview">
+          <img id="photoPreview" src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png" alt="Preview foto">
+        </div>
+        <div class="form-actions">
+          <button class="btn primary" type="submit">Perbarui</button>
+          <a id="updateBackButton" class="btn secondary" href="profile.html">Kembali</a>
+        </div>
+      </form>
+    </section>
+  </main>
+  <script defer src="assets/js/ui.js"></script>
+  <script type="module" src="assets/js/perbarui_data.js"></script>
+</body>
+</html>

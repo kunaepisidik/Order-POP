@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Order POP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="page-shell">
+  <main class="auth-layout compact">
+    <section class="brand-panel">
+      <div class="brand-mark">POP</div>
+      <h1>Daftar Karyawan</h1>
+      <p>Isi data akun untuk mulai membuat order POP dan melihat riwayat pesanan.</p>
+    </section>
+
+    <section class="auth-card">
+      <p class="eyebrow">Register</p>
+      <h2>Buat Akun</h2>
+      <div id="message" class="message hidden"></div>
+      <div id="registerAccessNotice" class="access-notice hidden">
+        <p>Pendaftaran akun hanya dapat dilakukan oleh admin. Untuk mendaftar, silakan hubungi Visual Merchandiser melalui tombol berikut.</p>
+        <a id="contactVmButton" class="btn primary" href="#" target="_blank" rel="noopener">Hubungi VM</a>
+      </div>
+      <form id="registerForm" class="form-grid">
+        <label>
+          <span>Nama</span>
+          <input type="text" id="nama" name="nama" autocomplete="name" required>
+        </label>
+        <label>
+          <span>Username</span>
+          <input type="text" id="username" name="username" autocomplete="username" required>
+        </label>
+        <label>
+          <span>Brand</span>
+          <input type="text" id="brand" name="brand" required>
+        </label>
+        <label>
+          <span>Kata Sandi</span>
+          <input type="password" id="kataSandi" name="kata_sandi" autocomplete="new-password" minlength="4" required>
+        </label>
+        <label>
+          <span>Konfirmasi Kata Sandi</span>
+          <input type="password" id="konfirmasiKataSandi" name="konfirmasi_kata_sandi" autocomplete="new-password" minlength="4" required>
+        </label>
+        <input type="hidden" id="role" name="role" value="karyawan">
+        <button id="registerSubmitButton" class="btn primary" type="submit">Registrasi</button>
+      </form>
+      <p class="helper-link">Sudah Memiliki Akun? <a href="login.html">Login Di Sini!</a></p>
+    </section>
+  </main>
+  <script defer src="assets/js/ui.js"></script>
+  <script type="module" src="assets/js/register.js"></script>
+</body>
+</html>
