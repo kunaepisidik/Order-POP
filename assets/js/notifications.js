@@ -1,6 +1,14 @@
 import { supabase, TABLES } from "./supabaseClient.js";
 
 const POLL_INTERVAL = 30000;
+const VAPID_PUBLIC_KEY = "BN5noylugOGVc2wja92G-kQj_UQMqE5b8qTiWN_46Cb4lbfLAi2P9vyIzfg8X0T0DtNICn9x9tM9qsMPs9I0J8g";
+
+function base64UrlToUint8Array(value) {
+  const padding = "=".repeat((4 - value.length % 4) % 4);
+  const base64 = (value + padding).replace(/-/g, "+").replace(/_/g, "/");
+  const rawData = window.atob(base64);
+  return Uint8Array.from([...rawData].map((character) => character.charCodeAt(0)));
+}
 
 function getNotificationUrl(notification) {
   if (notification.target_role === "admin") return "admin.html";
@@ -31,7 +39,7 @@ async function registerServiceWorker() {
   if (!("serviceWorker" in navigator)) return null;
 
   try {
-    await navigator.serviceWorker.register("service-worker.js");
+    await navigator.serviceWorker.register("/service-worker.js");
     return await navigator.serviceWorker.ready;
   } catch {
     return null;
@@ -84,14 +92,20 @@ function createPermissionButton() {
 }
 
 export async function createNotification({ targetRole = null, targetUserId = null, orderId = null, title, message }) {
-  const { error } = await supabase.from(TABLES.notifications).insert({
+  const { data, error } = await supabase.from(TABLES.notifications).insert({
     target_role: targetRole,
     target_user_id: targetUserId,
     order_id: orderId,
     judul: title,
     pesan: message,
     dibaca: false,
-  });
+  }).select("id").single();
+
+  if (!error && data?.id) {
+    await supabase.functions.invoke("send-push-notification", {
+      body: { notificationId: data.id },
+    }).catch(() => null);
+  }
 
   return { error };
 }
@@ -103,6 +117,33 @@ export function initBrowserNotifications(user, options = {}) {
   const permissionButton = createPermissionButton();
   let lastSeenId = Number(localStorage.getItem(recipient.storageKey) || 0);
 
+  async function savePushSubscription() {
+    if (!("PushManager" in window)) return;
+
+    const registration = await registerServiceWorker();
+    if (!registration) return;
+
+    let subscription = await registration.pushManager.getSubscription();
+    if (!subscription) {
+      subscription = await registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: base64UrlToUint8Array(VAPID_PUBLIC_KEY),
+      });
+    }
+
+    const subscriptionData = subscription.toJSON();
+    await supabase
+      .from(TABLES.pushSubscriptions)
+      .upsert({
+        user_id: user.role === "admin" ? null : user.id,
+        target_role: user.role === "admin" ? "admin" : null,
+        endpoint: subscription.endpoint,
+        p256dh: subscriptionData.keys?.p256dh,
+        auth: subscriptionData.keys?.auth,
+        user_agent: navigator.userAgent,
+      }, { onConflict: "endpoint" });
+  }
+
   async function requestPermission() {
     if (!("Notification" in window)) return;
 
@@ -113,7 +154,7 @@ export function initBrowserNotifications(user, options = {}) {
     }
 
     if (permission === "granted") {
-      await registerServiceWorker();
+      await savePushSubscription();
       await showBrowserNotification({
         id: "test",
         judul: "Notifikasi Order POP Aktif",
@@ -159,7 +200,12 @@ export function initBrowserNotifications(user, options = {}) {
 
   permissionButton?.addEventListener("click", requestPermission);
 
-  registerServiceWorker();
+  if ("Notification" in window && Notification.permission === "granted") {
+    savePushSubscription();
+  } else {
+    registerServiceWorker();
+  }
+
   loadNotifications();
 
   const channel = supabase

@@ -9,6 +9,7 @@ export const TABLES = {
   employees: "karyawan",
   notifications: "notifikasi",
   orders: "order",
+  pushSubscriptions: "push_subscriptions",
 };
 
 export const DEFAULT_PROFILE_PHOTO = "https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png";
