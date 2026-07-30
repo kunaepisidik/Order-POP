@@ -1,4 +1,5 @@
 import { clearSession, DEFAULT_PROFILE_PHOTO, hidePageLoading, requireRole, saveSession, setButtonLoading, showPageLoading, supabase, TABLES } from "./supabaseClient.js";
+import { initBrowserNotifications } from "./notifications.js";
 
 const user = requireRole(["karyawan"]);
 const dashboardPhoto = document.getElementById("dashboardPhoto");
@@ -13,6 +14,8 @@ if (user) {
   dashboardBrand.textContent = user.brand || "-";
   dashboardPhoto.src = user.foto || DEFAULT_PROFILE_PHOTO;
 }
+
+initBrowserNotifications(user);
 
 dashboardPhoto.addEventListener("error", () => {
   dashboardPhoto.src = DEFAULT_PROFILE_PHOTO;

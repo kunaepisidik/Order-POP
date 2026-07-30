@@ -370,6 +370,11 @@ select:focus {
   background: #ecfdf3;
 }
 
+.notification-permission-btn {
+  color: #fff;
+  background: var(--primary);
+}
+
 .access-notice {
   display: grid;
   gap: 12px;

@@ -1,4 +1,5 @@
 import { DEFAULT_PROFILE_PHOTO, deleteExpiredOrders, requireRole, setButtonLoading, setMessage, supabase, TABLES } from "./supabaseClient.js";
+import { initBrowserNotifications } from "./notifications.js";
 
 const user = requireRole(["karyawan"]);
 const list = document.getElementById("historyList");
@@ -7,6 +8,10 @@ const message = document.getElementById("message");
 const historyLoading = document.getElementById("historyLoading");
 const addOrderBtn = document.getElementById("addOrderBtn");
 const ordersById = new Map();
+
+initBrowserNotifications(user, {
+  onNewNotification: () => loadHistory(),
+});
 
 const orderSuccess = sessionStorage.getItem("orderSuccess");
 if (orderSuccess) {

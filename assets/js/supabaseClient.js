@@ -7,6 +7,7 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
 
 export const TABLES = {
   employees: "karyawan",
+  notifications: "notifikasi",
   orders: "order",
 };
 

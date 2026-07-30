@@ -1,4 +1,5 @@
 import { clearSession, DEFAULT_PROFILE_PHOTO, deleteExpiredOrders, formatDate, hidePageLoading, requireRole, setButtonLoading, setMessage, showPageLoading, supabase, TABLES } from "./supabaseClient.js";
+import { createNotification, initBrowserNotifications } from "./notifications.js";
 
 const admin = requireRole(["admin"]);
 const logoutBtn = document.getElementById("logoutBtn");
@@ -21,6 +22,10 @@ let pendingRejectOrderId = null;
 if (admin && adminWelcomeText) {
   adminWelcomeText.textContent = admin.nama || admin.username || "Admin";
 }
+
+initBrowserNotifications(admin, {
+  onNewNotification: () => loadOrders(),
+});
 
 function escapeHtml(value) {
   return String(value ?? "-").replace(/[&<>"']/g, (character) => ({
@@ -213,6 +218,19 @@ async function updateStatus(orderId, status, button, reason = "") {
     if (error) {
       setMessage(message, "error", "Status pesanan gagal diperbarui.");
       return false;
+    }
+
+    const updatedOrder = orders.find((order) => String(order.id) === String(orderId));
+    if (updatedOrder?.user_id && (status === "selesai" || status === "ditolak")) {
+      const statusText = status === "selesai" ? "selesai" : "ditolak";
+      const reasonText = status === "ditolak" && reason ? ` Alasan: ${reason}` : "";
+
+      await createNotification({
+        targetUserId: updatedOrder.user_id,
+        orderId,
+        title: `Order POP ${statusText.charAt(0).toUpperCase() + statusText.slice(1)}`,
+        message: `Order ${updatedOrder.brand || "-"} - ${updatedOrder.kategori || "Order POP"} (${updatedOrder.promo || "-"}) telah ${statusText} oleh ${admin.nama || admin.username}.${reasonText}`,
+      });
     }
 
     setMessage(message, "success", "Status pesanan berhasil diperbarui.");

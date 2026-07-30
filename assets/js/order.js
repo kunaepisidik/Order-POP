@@ -1,4 +1,5 @@
 import { hidePageLoading, requireRole, setButtonLoading, setMessage, showPageLoading, supabase, TABLES } from "./supabaseClient.js";
+import { createNotification } from "./notifications.js";
 
 const user = requireRole(["karyawan"]);
 const form = document.getElementById("orderForm");
@@ -66,7 +67,7 @@ form.addEventListener("submit", async (event) => {
   showPageLoading("Mengirim order...");
 
   try {
-    const { error } = await supabase.from(TABLES.orders).insert({
+    const { data: insertedOrder, error } = await supabase.from(TABLES.orders).insert({
       user_id: user.id,
       nama: user.nama,
       username: user.username,
@@ -77,12 +78,19 @@ form.addEventListener("submit", async (event) => {
       promo,
       status: "belum diproses",
       admin_nama: null,
-    });
+    }).select("id").single();
 
     if (error) {
       setMessage(message, "error", "Order gagal disimpan. Silahkan coba lagi.");
       return;
     }
+
+    await createNotification({
+      targetRole: "admin",
+      orderId: insertedOrder?.id || null,
+      title: "Order POP Baru",
+      message: `${user.nama || user.username} membuat order ${brand} - ${kategori}. Promo: ${promo}.`,
+    });
 
     sessionStorage.setItem("orderSuccess", "Orderan Anda Akan Segera Di Proses Oleh VM, Mohon Menunggu. Terima Kasih");
     shouldResetLoading = false;
