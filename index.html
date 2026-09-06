@@ -34,9 +34,19 @@
     }
   </script>
 
-  <!-- Anti-Conflict Styles Injection -->
+  <!-- CSS Sinkronisasi Loader dengan JS Bawaan (ui.js & publicAuth.js) -->
   <style>
-    /* Mencegah file CSS eksternal merusak layout Tailwind */
+    /* Mengikuti standar kontrol status body dari ui.js / publicAuth.js */
+    body.is-loaded #loading,
+    body:not(.is-loading) #loading,
+    #loading.hidden,
+    #loading.is-hidden {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
     body.page-shell {
       display: flex !important;
       background-color: #020617 !important;
@@ -50,10 +60,10 @@
     }
   </style>
 </head>
-<body class="page-shell h-full font-sans antialiased text-slate-100 flex items-center justify-center p-4 sm:p-6 lg:p-8 relative min-h-screen">
+<body class="page-shell is-loading h-full font-sans antialiased text-slate-100 flex items-center justify-center p-4 sm:p-6 lg:p-8 relative min-h-screen">
 
-  <!-- Loader Overlay (Modern UI with Smooth Fade-Out) -->
-  <div id="loading" class="loading-state fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md transition-all duration-500 ease-in-out">
+  <!-- Loader Overlay Modern -->
+  <div id="loading" class="loading-state fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-md transition-all duration-300">
     <div class="flex flex-col items-center gap-3 p-6 rounded-2xl bg-slate-900/90 border border-slate-800/80 shadow-2xl shadow-indigo-500/10">
       <div class="w-8 h-8 border-3 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
       <p class="text-xs font-semibold tracking-wide text-slate-300">Memuat halaman...</p>
@@ -126,24 +136,31 @@
 
   </main>
 
-  <!-- Auto Handler Loader Dismiss -->
+  <!-- Handler Pengendali Loader -->
   <script>
-    function dismissLoader() {
+    function hideLoader() {
+      document.body.classList.remove('is-loading');
+      document.body.classList.add('is-loaded');
       const loader = document.getElementById('loading');
-      if (loader && loader.style.display !== 'none') {
-        loader.style.opacity = '0';
-        loader.style.pointerEvents = 'none';
-        setTimeout(() => {
-          loader.style.display = 'none';
-        }, 500);
+      if (loader) {
+        loader.classList.add('hidden');
       }
     }
 
-    // Hilangkan loader saat halaman selesai dimuat sepenuhnya
-    window.addEventListener('load', dismissLoader);
+    // 1. Eksekusi saat DOM dan Asset Selesai Diberdayakan
+    document.addEventListener('DOMContentLoaded', hideLoader);
+    window.addEventListener('load', hideLoader);
 
-    // Proteksi batas waktu (maksimal 1.5 detik loader tampil)
-    setTimeout(dismissLoader, 1500);
+    // 2. Pantau jika ui.js/publicAuth.js mengubah class pada body
+    const observer = new MutationObserver(() => {
+      if (!document.body.classList.contains('is-loading') || document.body.classList.contains('is-loaded')) {
+        hideLoader();
+      }
+    });
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    // 3. Pengaman batas waktu maksimal (1.2 detik)
+    setTimeout(hideLoader, 1200);
   </script>
 
   <script defer src="assets/js/ui.js"></script>
