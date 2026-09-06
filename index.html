@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order POP</title>
   
-  <!-- Google Fonts & Tailwind CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   
   <link rel="icon" href="favicon.png.png" type="image/x-icon">
+  <link rel="stylesheet" href="assets/css/style.css">
 
   <meta name="description" content="Order Pop memudahkan proses pemesanan dengan cepat, mudah, dan praktis.">
   <meta property="og:type" content="website">
@@ -34,7 +34,15 @@
     }
   </script>
 </head>
-<body class="h-full font-sans antialiased text-slate-100 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+<body class="page-shell h-full font-sans antialiased text-slate-100 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+
+  <!-- Element Loader Overlay (Penting untuk disembunyikan oleh ui.js / publicAuth.js) -->
+  <div id="loading" class="loading-state loader fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 backdrop-blur-md transition-opacity duration-300 pointer-events-none opacity-0 hidden">
+    <div class="flex flex-col items-center gap-3">
+      <div class="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+      <p class="text-sm font-medium text-slate-300">Memuat halaman...</p>
+    </div>
+  </div>
 
   <!-- Background Glowing Effects -->
   <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
@@ -42,19 +50,18 @@
     <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-violet-600/20 rounded-full blur-3xl"></div>
   </div>
 
-  <main class="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-12 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl shadow-2xl overflow-hidden">
+  <main class="auth-layout w-full max-w-4xl grid grid-cols-1 lg:grid-cols-12 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl shadow-2xl overflow-hidden">
     
     <!-- Brand Panel (Left Side) -->
-    <section class="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between relative overflow-hidden border-b lg:border-b-0 lg:border-r border-slate-800/60 bg-gradient-to-br from-slate-900/80 via-slate-900/40 to-indigo-950/30">
+    <section class="brand-panel lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between relative overflow-hidden border-b lg:border-b-0 lg:border-r border-slate-800/60 bg-gradient-to-br from-slate-900/80 via-slate-900/40 to-indigo-950/30">
       <div class="space-y-6">
-        <!-- Logo Badge -->
         <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-bold text-xs tracking-wider uppercase">
           <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
           VM 359 System
         </div>
 
         <div class="space-y-3">
-          <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-500/25">
+          <div class="brand-mark w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-500/25">
             POP
           </div>
           <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
@@ -63,11 +70,10 @@
         </div>
 
         <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-md">
-          Kelola pesanan promo, pantau status proses, dan rapikan alur kerja tim VM dalam satu platform yang terintegrasi.
+          Kelola pesanan promo, pantau status proses, dan rapikan alur kerja tim VM dalam satu tempat.
         </p>
       </div>
 
-      <!-- Feature Pill Hints -->
       <div class="mt-8 pt-6 border-t border-slate-800/60 flex items-center gap-4 text-xs text-slate-500">
         <span class="flex items-center gap-1.5">
           <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> Real-time
@@ -79,22 +85,22 @@
     </section>
 
     <!-- Auth Card (Right Side) -->
-    <section class="lg:col-span-5 p-8 sm:p-12 flex flex-col justify-center bg-slate-900/40">
+    <section class="auth-card lg:col-span-5 p-8 sm:p-12 flex flex-col justify-center bg-slate-900/40">
       <div class="mb-8">
-        <span class="text-xs font-semibold text-indigo-400 tracking-wider uppercase">Mulai Sekarang</span>
+        <p class="eyebrow text-xs font-semibold text-indigo-400 tracking-wider uppercase">Mulai</p>
         <h2 class="text-2xl font-bold text-white mt-1">Selamat Datang</h2>
-        <p class="text-xs text-slate-400 mt-1 leading-normal">
-          Silakan masuk ke akun Anda atau daftar sebagai karyawan baru.
+        <p class="muted text-xs text-slate-400 mt-1 leading-normal">
+          Silakan masuk jika sudah memiliki akun, atau daftar sebagai karyawan baru.
         </p>
       </div>
 
-      <div class="space-y-3">
-        <a href="login.html" class="w-full py-3.5 px-4 rounded-xl font-semibold text-sm text-white bg-indigo-600 hover:bg-indigo-500 active:scale-[0.98] transition-all duration-200 shadow-lg shadow-indigo-600/25 flex items-center justify-center gap-2 group">
+      <div class="stack gap-md space-y-3">
+        <a href="login.html" class="btn primary w-full py-3.5 px-4 rounded-xl font-semibold text-sm text-white bg-indigo-600 hover:bg-indigo-500 active:scale-[0.98] transition-all duration-200 shadow-lg shadow-indigo-600/25 flex items-center justify-center gap-2 group">
           <span>Login</span>
           <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
 
-        <a href="register.html" class="w-full py-3.5 px-4 rounded-xl font-semibold text-sm text-slate-300 bg-slate-800/80 hover:bg-slate-700/80 hover:text-white border border-slate-700/50 active:scale-[0.98] transition-all duration-200 flex items-center justify-center">
+        <a href="register.html" class="btn secondary w-full py-3.5 px-4 rounded-xl font-semibold text-sm text-slate-300 bg-slate-800/80 hover:bg-slate-700/80 hover:text-white border border-slate-700/50 active:scale-[0.98] transition-all duration-200 flex items-center justify-center">
           Register
         </a>
       </div>
