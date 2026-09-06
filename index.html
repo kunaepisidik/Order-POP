@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="h-full bg-slate-950">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order POP</title>
+  
+  <!-- Google Fonts & Tailwind CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
   <link rel="icon" href="favicon.png.png" type="image/x-icon">
 
   <meta name="description" content="Order Pop memudahkan proses pemesanan dengan cepat, mudah, dan praktis.">
-  
   <meta property="og:type" content="website">
   <meta property="og:title" content="Order Pop - VM 359">
   <meta property="og:description" content="Order lebih cepat, mudah, dan praktis.">
@@ -19,29 +21,88 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image" content="https://order-pop.vercel.app/tfix.png">
-  <meta property="og:image:secure_url" content="https://order-pop.vercel.app/tfix.png">
-  <meta property="og:image:type" content="image/png">
-</head>
-<body class="page-shell">
-  <main class="auth-layout">
-    <section class="brand-panel">
-      <div class="brand-mark">POP</div>
-      <h1>Order POP</h1>
-      <p>Kelola pesanan promo, pantau status proses, dan rapikan alur kerja tim VM dalam satu tempat.</p>
-    </section>
 
-    <section class="auth-card">
-      <p class="eyebrow">Mulai</p>
-      <h2>Selamat Datang</h2>
-      <p class="muted">Silakan masuk jika sudah memiliki akun, atau daftar sebagai karyawan baru.</p>
-      <div class="stack gap-md">
-        <a class="btn primary" href="login.html">Login</a>
-        <a class="btn secondary" href="register.html">Register</a>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+</head>
+<body class="h-full font-sans antialiased text-slate-100 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+
+  <!-- Background Glowing Effects -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-600/30 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-violet-600/20 rounded-full blur-3xl"></div>
+  </div>
+
+  <main class="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-12 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl shadow-2xl overflow-hidden">
+    
+    <!-- Brand Panel (Left Side) -->
+    <section class="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between relative overflow-hidden border-b lg:border-b-0 lg:border-r border-slate-800/60 bg-gradient-to-br from-slate-900/80 via-slate-900/40 to-indigo-950/30">
+      <div class="space-y-6">
+        <!-- Logo Badge -->
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-bold text-xs tracking-wider uppercase">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+          VM 359 System
+        </div>
+
+        <div class="space-y-3">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-500/25">
+            POP
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+            Order <span class="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">POP</span>
+          </h1>
+        </div>
+
+        <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-md">
+          Kelola pesanan promo, pantau status proses, dan rapikan alur kerja tim VM dalam satu platform yang terintegrasi.
+        </p>
+      </div>
+
+      <!-- Feature Pill Hints -->
+      <div class="mt-8 pt-6 border-t border-slate-800/60 flex items-center gap-4 text-xs text-slate-500">
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> Real-time
+        </span>
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg> Terintegrasi
+        </span>
       </div>
     </section>
+
+    <!-- Auth Card (Right Side) -->
+    <section class="lg:col-span-5 p-8 sm:p-12 flex flex-col justify-center bg-slate-900/40">
+      <div class="mb-8">
+        <span class="text-xs font-semibold text-indigo-400 tracking-wider uppercase">Mulai Sekarang</span>
+        <h2 class="text-2xl font-bold text-white mt-1">Selamat Datang</h2>
+        <p class="text-xs text-slate-400 mt-1 leading-normal">
+          Silakan masuk ke akun Anda atau daftar sebagai karyawan baru.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <a href="login.html" class="w-full py-3.5 px-4 rounded-xl font-semibold text-sm text-white bg-indigo-600 hover:bg-indigo-500 active:scale-[0.98] transition-all duration-200 shadow-lg shadow-indigo-600/25 flex items-center justify-center gap-2 group">
+          <span>Login</span>
+          <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+
+        <a href="register.html" class="w-full py-3.5 px-4 rounded-xl font-semibold text-sm text-slate-300 bg-slate-800/80 hover:bg-slate-700/80 hover:text-white border border-slate-700/50 active:scale-[0.98] transition-all duration-200 flex items-center justify-center">
+          Register
+        </a>
+      </div>
+    </section>
+
   </main>
+
   <script defer src="assets/js/ui.js"></script>
   <script type="module" src="assets/js/publicAuth.js"></script>
- 
 </body>
 </html>
