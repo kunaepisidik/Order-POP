@@ -34,19 +34,8 @@
     }
   </script>
 
-  <!-- CSS Sinkronisasi Loader dengan JS Bawaan (ui.js & publicAuth.js) -->
   <style>
-    /* Mengikuti standar kontrol status body dari ui.js / publicAuth.js */
-    body.is-loaded #loading,
-    body:not(.is-loading) #loading,
-    #loading.hidden,
-    #loading.is-hidden {
-      opacity: 0 !important;
-      visibility: hidden !important;
-      pointer-events: none !important;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-
+    /* Mencegah konflik tata letak CSS eksternal */
     body.page-shell {
       display: flex !important;
       background-color: #020617 !important;
@@ -58,12 +47,19 @@
       max-width: 56rem !important;
       width: 100% !important;
     }
+    
+    /* Utility animation loader */
+    .loader-fade-out {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: opacity 0.4s ease-out !important;
+    }
   </style>
 </head>
-<body class="page-shell is-loading h-full font-sans antialiased text-slate-100 flex items-center justify-center p-4 sm:p-6 lg:p-8 relative min-h-screen">
+<body class="page-shell h-full font-sans antialiased text-slate-100 flex items-center justify-center p-4 sm:p-6 lg:p-8 relative min-h-screen">
 
-  <!-- Loader Overlay Modern -->
-  <div id="loading" class="loading-state fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-md transition-all duration-300">
+  <!-- Loader Overlay (Hadir saat muat halaman, memudar & hilang otomatis) -->
+  <div id="loading" class="loading-state fixed inset-0 z-[9999] flex items-center justify-center bg-slate-950/90 backdrop-blur-md">
     <div class="flex flex-col items-center gap-3 p-6 rounded-2xl bg-slate-900/90 border border-slate-800/80 shadow-2xl shadow-indigo-500/10">
       <div class="w-8 h-8 border-3 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
       <p class="text-xs font-semibold tracking-wide text-slate-300">Memuat halaman...</p>
@@ -136,31 +132,31 @@
 
   </main>
 
-  <!-- Handler Pengendali Loader -->
+  <!-- Skrip Eksekusi Loader Secara Langsung Tanpa Menunggu Auth/External JS -->
   <script>
-    function hideLoader() {
-      document.body.classList.remove('is-loading');
-      document.body.classList.add('is-loaded');
-      const loader = document.getElementById('loading');
-      if (loader) {
-        loader.classList.add('hidden');
+    (function() {
+      function forceRemoveLoader() {
+        const loader = document.getElementById('loading');
+        if (loader) {
+          loader.classList.add('loader-fade-out');
+          setTimeout(function() {
+            loader.style.display = 'none';
+          }, 400);
+        }
       }
-    }
 
-    // 1. Eksekusi saat DOM dan Asset Selesai Diberdayakan
-    document.addEventListener('DOMContentLoaded', hideLoader);
-    window.addEventListener('load', hideLoader);
-
-    // 2. Pantau jika ui.js/publicAuth.js mengubah class pada body
-    const observer = new MutationObserver(() => {
-      if (!document.body.classList.contains('is-loading') || document.body.classList.contains('is-loaded')) {
-        hideLoader();
+      // Hilangkan loader saat struktur DOM siap
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          setTimeout(forceRemoveLoader, 300);
+        });
+      } else {
+        setTimeout(forceRemoveLoader, 300);
       }
-    });
-    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
-    // 3. Pengaman batas waktu maksimal (1.2 detik)
-    setTimeout(hideLoader, 1200);
+      // Cadangan pengaman absolut jika koneksi sangat lambat (maksimal 800ms)
+      setTimeout(forceRemoveLoader, 800);
+    })();
   </script>
 
   <script defer src="assets/js/ui.js"></script>
