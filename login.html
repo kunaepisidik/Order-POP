@@ -3,89 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Login - Order POP</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="assets/css/ios-liquid.css">
-
-  <link rel="icon" href="favicon.png.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
-<body class="login-shell">
-
-  <div class="bg-gradient"></div>
-
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-
-  <main class="login-layout">
-
-    <section class="login-card">
-
-      <div class="glass-reflection"></div>
-
-      <div class="brand-mark-ios">POP</div>
-
-      <p class="eyebrow-ios">
-        <span class="live-dot"></span>
-        Login
-      </p>
-
+<body class="page-shell">
+  <main class="auth-layout compact">
+    <section class="brand-panel">
+      <div class="brand-mark">POP</div>
       <h1>Masuk Akun</h1>
-
-      <p class="muted-ios">
-        Gunakan username dan kata sandi yang sudah terdaftar di data karyawan.
-      </p>
-
-      <div id="message" class="message hidden"></div>
-
-      <form id="loginForm" class="login-form">
-
-        <div class="input-group">
-          <label for="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            autocomplete="username"
-            placeholder="Masukkan username"
-            required>
-        </div>
-
-        <div class="input-group">
-          <label for="kataSandi">Kata Sandi</label>
-          <input
-            type="password"
-            id="kataSandi"
-            name="kata_sandi"
-            autocomplete="current-password"
-            placeholder="Masukkan kata sandi"
-            required>
-        </div>
-
-        <button class="btn-ios primary" type="submit">
-          Login
-        </button>
-
-      </form>
-
-      <p class="helper-link-ios">
-        Belum mempunyai akun?
-        <a href="register.html">Daftar di sini</a>
-      </p>
-
+      <p>Gunakan username dan kata sandi yang sudah terdaftar di data karyawan.</p>
     </section>
 
+    <section class="auth-card">
+      <p class="eyebrow">Login</p>
+      <h2>Order POP</h2>
+      <div id="message" class="message hidden"></div>
+      <form id="loginForm" class="form-grid">
+        <label>
+          <span>Username</span>
+          <input type="text" id="username" name="username" autocomplete="username" required>
+        </label>
+        <label>
+          <span>Kata Sandi</span>
+          <input type="password" id="kataSandi" name="kata_sandi" autocomplete="current-password" required>
+        </label>
+        <button class="btn primary" type="submit">Login</button>
+      </form>
+      <p class="helper-link">Belum Mempunyai Akun? <a href="register.html">Daftar Di Sini!</a></p>
+    </section>
   </main>
-
   <script defer src="assets/js/ui.js"></script>
   <script type="module" src="assets/js/login.js"></script>
-
 </body>
 </html>
