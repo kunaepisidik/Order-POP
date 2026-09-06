@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order POP</title>
   
+  <!-- Google Fonts & Tailwind CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   
   <link rel="icon" href="favicon.png.png" type="image/x-icon">
-  <link rel="stylesheet" href="assets/css/style.css">
 
   <meta name="description" content="Order Pop memudahkan proses pemesanan dengan cepat, mudah, dan praktis.">
   <meta property="og:type" content="website">
@@ -33,20 +33,28 @@
       },
     }
   </script>
-</head>
-<body class="page-shell h-full font-sans antialiased text-slate-100 flex items-center justify-center p-4 sm:p-6 lg:p-8">
 
-  <!-- Element Loader Overlay (Penting untuk disembunyikan oleh ui.js / publicAuth.js) -->
-  <div id="loading" class="loading-state loader fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 backdrop-blur-md transition-opacity duration-300 pointer-events-none opacity-0 hidden">
-    <div class="flex flex-col items-center gap-3">
-      <div class="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-      <p class="text-sm font-medium text-slate-300">Memuat halaman...</p>
-    </div>
+  <!-- Override untuk menyembunyikan loader bawaan agar tidak mengganggu UI -->
+  <style>
+    /* Menyembunyikan loader agar tulisan 'Memuat halaman...' tidak ganjel/muncul terus */
+    #loading, .loading-state, .page-loader, [data-loader] {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+  </style>
+</head>
+<body class="page-shell h-full font-sans antialiased text-slate-100 flex items-center justify-center p-4 sm:p-6 lg:p-8 relative min-h-screen">
+
+  <!-- Dummy Hidden Loader Element (Diperlukan oleh ui.js / publicAuth.js agar JS tidak error) -->
+  <div id="loading" class="loading-state hidden" aria-hidden="true">
+    <span>Memuat halaman...</span>
   </div>
 
-  <!-- Background Glowing Effects -->
+  <!-- Background Ambient Glowing Effects -->
   <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-    <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-600/30 rounded-full blur-3xl"></div>
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-600/25 rounded-full blur-3xl"></div>
     <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-violet-600/20 rounded-full blur-3xl"></div>
   </div>
 
@@ -55,6 +63,7 @@
     <!-- Brand Panel (Left Side) -->
     <section class="brand-panel lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between relative overflow-hidden border-b lg:border-b-0 lg:border-r border-slate-800/60 bg-gradient-to-br from-slate-900/80 via-slate-900/40 to-indigo-950/30">
       <div class="space-y-6">
+        <!-- Badge -->
         <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-bold text-xs tracking-wider uppercase">
           <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
           VM 359 System
@@ -74,6 +83,7 @@
         </p>
       </div>
 
+      <!-- Feature Pill Hints -->
       <div class="mt-8 pt-6 border-t border-slate-800/60 flex items-center gap-4 text-xs text-slate-500">
         <span class="flex items-center gap-1.5">
           <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> Real-time
