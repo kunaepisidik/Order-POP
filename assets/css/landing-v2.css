@@ -3,7 +3,7 @@
 --bg2:#0d1b36;
 --primary:#4f8cff;
 --primary2:#7b61ff;
---text:#fff;
+--text:#ffffff;
 --muted:#b8c4da;
 --card:rgba(255,255,255,.08);
 --border:rgba(255,255,255,.12);
@@ -16,9 +16,9 @@ box-sizing:border-box;
 }
 
 body.landing-v2{
-font-family:Inter,sans-serif;
+font-family:"Inter",sans-serif;
 background:
-radial-gradient(circle at top left,#19335e 0,#071022 50%),
+radial-gradient(circle at top left,#19335e 0,#071022 45%),
 linear-gradient(180deg,#071022,#08111f);
 color:var(--text);
 min-height:100vh;
@@ -34,6 +34,7 @@ border-radius:50%;
 filter:blur(120px);
 opacity:.35;
 pointer-events:none;
+z-index:0;
 }
 
 .glow-1{
@@ -49,13 +50,15 @@ bottom:-150px;
 }
 
 .landing-wrapper{
-max-width:1250px;
+position:relative;
+z-index:2;
+max-width:1240px;
 margin:auto;
 min-height:100vh;
 display:grid;
 grid-template-columns:1.25fr .85fr;
 gap:40px;
-padding:50px;
+padding:48px;
 align-items:center;
 }
 
@@ -63,7 +66,6 @@ align-items:center;
 display:flex;
 flex-direction:column;
 gap:24px;
-animation:fadeUp .8s ease;
 }
 
 .badge{
@@ -72,7 +74,7 @@ align-items:center;
 gap:8px;
 padding:10px 16px;
 background:rgba(255,255,255,.08);
-border:1px solid rgba(255,255,255,.1);
+border:1px solid rgba(255,255,255,.12);
 border-radius:999px;
 width:fit-content;
 font-size:.85rem;
@@ -95,7 +97,7 @@ font-weight:800;
 font-size:2rem;
 border-radius:22px;
 background:linear-gradient(135deg,var(--primary),var(--primary2));
-box-shadow:0 20px 45px rgba(79,140,255,.35);
+box-shadow:0 18px 45px rgba(79,140,255,.35);
 }
 
 .hero h1{
@@ -105,31 +107,32 @@ line-height:1;
 }
 
 .hero-desc{
-font-size:1.05rem;
-color:var(--muted);
-line-height:1.8;
 max-width:600px;
+font-size:1.05rem;
+line-height:1.8;
+color:var(--muted);
 }
 
 .feature-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:18px;
-margin-top:16px;
+margin-top:10px;
 }
 
 .feature-card{
 background:var(--card);
 border:1px solid var(--border);
 backdrop-filter:blur(18px);
-border-radius:22px;
 padding:22px;
+border-radius:22px;
 transition:.3s;
 }
 
 .feature-card:hover{
 transform:translateY(-6px);
 border-color:rgba(79,140,255,.45);
+box-shadow:0 18px 40px rgba(0,0,0,.25);
 }
 
 .icon{
@@ -143,26 +146,25 @@ font-size:1rem;
 }
 
 .feature-card p{
-color:var(--muted);
 font-size:.9rem;
 line-height:1.6;
+color:var(--muted);
 }
 
 .login-panel{
 display:flex;
 justify-content:center;
-animation:fadeUp 1s ease;
 }
 
 .panel-content{
 width:100%;
 max-width:420px;
 background:rgba(255,255,255,.09);
-backdrop-filter:blur(22px);
 border:1px solid rgba(255,255,255,.12);
+backdrop-filter:blur(24px);
 border-radius:32px;
 padding:42px;
-box-shadow:0 20px 60px rgba(0,0,0,.35);
+box-shadow:0 24px 60px rgba(0,0,0,.35);
 }
 
 .eyebrow{
@@ -178,9 +180,9 @@ margin-bottom:12px;
 }
 
 .panel-text{
-color:var(--muted);
 line-height:1.7;
-margin-bottom:32px;
+color:var(--muted);
+margin-bottom:30px;
 }
 
 .button-group{
@@ -195,8 +197,8 @@ justify-content:center;
 align-items:center;
 padding:16px;
 border-radius:18px;
-font-weight:700;
 text-decoration:none;
+font-weight:700;
 transition:.25s;
 }
 
@@ -221,7 +223,7 @@ background:rgba(255,255,255,.13);
 }
 
 .footer-note{
-margin-top:26px;
+margin-top:24px;
 text-align:center;
 font-size:.82rem;
 color:#90a4c5;
@@ -229,7 +231,7 @@ color:#90a4c5;
 
 .reveal{
 opacity:0;
-transform:translateY(22px);
+transform:translateY(24px);
 transition:.8s ease;
 }
 
@@ -241,7 +243,7 @@ transform:none;
 @keyframes fadeUp{
 from{
 opacity:0;
-transform:translateY(30px);
+transform:translateY(28px);
 }
 to{
 opacity:1;
@@ -252,23 +254,72 @@ transform:none;
 @media(max-width:960px){
 
 .landing-wrapper{
-grid-template-columns:1fr;
-padding:26px;
-gap:30px;
+display:flex;
+flex-direction:column;
+padding:22px;
+gap:22px;
+justify-content:flex-start;
+min-height:100vh;
 }
 
-.hero{
-text-align:center;
-align-items:center;
-}
-
-.feature-grid{
-grid-template-columns:1fr;
+.login-panel{
+order:1;
 width:100%;
+margin-top:12px;
 }
 
 .panel-content{
 max-width:none;
+padding:30px 24px;
+border-radius:26px;
+}
+
+.hero{
+order:2;
+align-items:center;
+text-align:center;
+gap:18px;
+}
+
+.logo-box{
+width:72px;
+height:72px;
+font-size:1.7rem;
+}
+
+.hero h1{
+font-size:2.4rem;
+}
+
+.hero-desc{
+font-size:.95rem;
+line-height:1.7;
+}
+
+.feature-grid{
+grid-template-columns:1fr;
+gap:14px;
+width:100%;
+margin-top:8px;
+}
+
+.feature-card{
+padding:18px;
+border-radius:18px;
+}
+
+.badge{
+font-size:.8rem;
+padding:8px 14px;
+}
+
+.btn-modern{
+padding:15px;
+font-size:1rem;
+}
+
+.footer-note{
+margin-top:20px;
 }
 
 }
