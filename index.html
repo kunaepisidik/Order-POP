@@ -35,7 +35,18 @@
   </script>
 
   <style>
-    /* Mencegah konflik tata letak CSS eksternal */
+    /* Proteksi mutlak untuk memblokir elemen loader apapun yang dibuat oleh ui.js / publicAuth.js */
+    #loading, 
+    .loading-state, 
+    .loader, 
+    [id*="load"], 
+    [class*="load"] {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+
     body.page-shell {
       display: flex !important;
       background-color: #020617 !important;
@@ -47,24 +58,9 @@
       max-width: 56rem !important;
       width: 100% !important;
     }
-    
-    /* Utility animation loader */
-    .loader-fade-out {
-      opacity: 0 !important;
-      pointer-events: none !important;
-      transition: opacity 0.4s ease-out !important;
-    }
   </style>
 </head>
 <body class="page-shell h-full font-sans antialiased text-slate-100 flex items-center justify-center p-4 sm:p-6 lg:p-8 relative min-h-screen">
-
-  <!-- Loader Overlay (Hadir saat muat halaman, memudar & hilang otomatis) -->
-  <div id="loading" class="loading-state fixed inset-0 z-[9999] flex items-center justify-center bg-slate-950/90 backdrop-blur-md">
-    <div class="flex flex-col items-center gap-3 p-6 rounded-2xl bg-slate-900/90 border border-slate-800/80 shadow-2xl shadow-indigo-500/10">
-      <div class="w-8 h-8 border-3 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-      <p class="text-xs font-semibold tracking-wide text-slate-300">Memuat halaman...</p>
-    </div>
-  </div>
 
   <!-- Background Ambient Glowing Effects -->
   <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
@@ -131,33 +127,6 @@
     </section>
 
   </main>
-
-  <!-- Skrip Eksekusi Loader Secara Langsung Tanpa Menunggu Auth/External JS -->
-  <script>
-    (function() {
-      function forceRemoveLoader() {
-        const loader = document.getElementById('loading');
-        if (loader) {
-          loader.classList.add('loader-fade-out');
-          setTimeout(function() {
-            loader.style.display = 'none';
-          }, 400);
-        }
-      }
-
-      // Hilangkan loader saat struktur DOM siap
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-          setTimeout(forceRemoveLoader, 300);
-        });
-      } else {
-        setTimeout(forceRemoveLoader, 300);
-      }
-
-      // Cadangan pengaman absolut jika koneksi sangat lambat (maksimal 800ms)
-      setTimeout(forceRemoveLoader, 800);
-    })();
-  </script>
 
   <script defer src="assets/js/ui.js"></script>
   <script type="module" src="assets/js/publicAuth.js"></script>
