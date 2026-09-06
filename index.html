@@ -4,111 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order POP</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- CSS lama -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="favicon.png.png" type="image/x-icon">
 
-  <!-- CSS baru -->
-  <link rel="stylesheet" href="assets/css/landing-v2.css">
+  <meta name="description" content="Order Pop memudahkan proses pemesanan dengan cepat, mudah, dan praktis.">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Order Pop - VM 359">
+  <meta property="og:description" content="Order lebih cepat, mudah, dan praktis.">
+  <meta property="og:url" content="https://order-pop.vercel.app/">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image" content="https://order-pop.vercel.app/tfix.png">
+  <meta property="og:image:secure_url" content="https://order-pop.vercel.app/tfix.png">
+  <meta property="og:image:type" content="image/png">
 </head>
-
-<body class="landing-v2">
-
-  <div class="bg-glow glow-1"></div>
-  <div class="bg-glow glow-2"></div>
-
-  <main class="landing-wrapper">
-
-    <!-- Login Card -->
-    <section class="login-panel">
-
-      <div class="panel-content">
-
-        <p class="eyebrow">WELCOME BACK</p>
-
-        <h2>Masuk ke Sistem</h2>
-
-        <p class="panel-text">
-          Gunakan akun yang sudah terdaftar atau buat akun baru sebagai karyawan.
-        </p>
-
-        <div class="button-group">
-
-          <a class="btn-modern primary" href="login.html">
-            Login
-          </a>
-
-          <a class="btn-modern secondary" href="register.html">
-            Register
-          </a>
-
-        </div>
-
-        <div class="footer-note">
-          Order POP • Internal Visual Merchandising
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- Hero -->
-    <section class="hero">
-
-      <div class="badge">
-        <span></span>
-        Internal VM System
-      </div>
-
-      <div class="logo-box">POP</div>
-
+<body class="page-shell">
+  <main class="auth-layout">
+    <section class="brand-panel">
+      <div class="brand-mark">POP</div>
       <h1>Order POP</h1>
-
-      <p class="hero-desc">
-        Kelola pesanan promo, pantau status pengerjaan,
-        dan rapikan alur kerja tim Visual Merchandising
-        dalam satu dashboard modern.
-      </p>
-
-      <div class="feature-grid">
-
-        <div class="feature-card">
-          <div class="icon">📦</div>
-          <h3>Kelola Pesanan</h3>
-          <p>Buat dan pantau seluruh order POP dengan mudah.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="icon">⏱️</div>
-          <h3>Tracking Status</h3>
-          <p>Lihat progres pengerjaan secara real-time.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="icon">👥</div>
-          <h3>Kolaborasi Tim</h3>
-          <p>Alur kerja lebih rapi untuk seluruh tim VM.</p>
-        </div>
-
-      </div>
-
+      <p>Kelola pesanan promo, pantau status proses, dan rapikan alur kerja tim VM dalam satu tempat.</p>
     </section>
 
+    <section class="auth-card">
+      <p class="eyebrow">Mulai</p>
+      <h2>Selamat Datang</h2>
+      <p class="muted">Silakan masuk jika sudah memiliki akun, atau daftar sebagai karyawan baru.</p>
+      <div class="stack gap-md">
+        <a class="btn primary" href="login.html">Login</a>
+        <a class="btn secondary" href="register.html">Register</a>
+      </div>
+    </section>
   </main>
-
-  <!-- JS lama tetap -->
   <script defer src="assets/js/ui.js"></script>
-
-  <!-- JS baru -->
-  <script defer src="assets/js/landing-v2.js"></script>
-
-  <!-- Auth lama tetap -->
   <script type="module" src="assets/js/publicAuth.js"></script>
-
+ 
 </body>
 </html>
