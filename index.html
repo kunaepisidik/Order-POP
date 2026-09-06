@@ -12,6 +12,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <link rel="icon" href="favicon.png.png" type="image/x-icon">
+  <link rel="stylesheet" href="assets/css/style.css">
 
   <meta name="description" content="Order Pop memudahkan proses pemesanan dengan cepat, mudah, dan praktis.">
   <meta property="og:type" content="website">
@@ -33,23 +34,15 @@
       },
     }
   </script>
-
-  <!-- Override untuk menyembunyikan loader bawaan agar tidak mengganggu UI -->
-  <style>
-    /* Menyembunyikan loader agar tulisan 'Memuat halaman...' tidak ganjel/muncul terus */
-    #loading, .loading-state, .page-loader, [data-loader] {
-      display: none !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      pointer-events: none !important;
-    }
-  </style>
 </head>
 <body class="page-shell h-full font-sans antialiased text-slate-100 flex items-center justify-center p-4 sm:p-6 lg:p-8 relative min-h-screen">
 
-  <!-- Dummy Hidden Loader Element (Diperlukan oleh ui.js / publicAuth.js agar JS tidak error) -->
-  <div id="loading" class="loading-state hidden" aria-hidden="true">
-    <span>Memuat halaman...</span>
+  <!-- Loader / Loading State (Aktif saat memuat halaman) -->
+  <div id="loading" class="loading-state fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md transition-opacity duration-300">
+    <div class="flex flex-col items-center gap-3 p-6 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-2xl">
+      <div class="w-9 h-9 border-3 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+      <p class="text-sm font-semibold tracking-wide text-slate-200">Memuat halaman...</p>
+    </div>
   </div>
 
   <!-- Background Ambient Glowing Effects -->
@@ -117,6 +110,25 @@
     </section>
 
   </main>
+
+  <!-- Script Penanganan Auto-Hide Loader -->
+  <script>
+    function hidePageLoader() {
+      const loader = document.getElementById('loading') || document.querySelector('.loading-state');
+      if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+          loader.style.display = 'none';
+        }, 300);
+      }
+    }
+
+    // Menutup loader otomatis ketika halaman selesai di-load
+    window.addEventListener('load', hidePageLoader);
+
+    // Backup safety fallback: pastikan loader hilang maksimal dalam 2.5 detik
+    setTimeout(hidePageLoader, 2500);
+  </script>
 
   <script defer src="assets/js/ui.js"></script>
   <script type="module" src="assets/js/publicAuth.js"></script>
