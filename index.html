@@ -12,7 +12,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <link rel="icon" href="favicon.png.png" type="image/x-icon">
-  <link rel="stylesheet" href="assets/css/style.css">
 
   <meta name="description" content="Order Pop memudahkan proses pemesanan dengan cepat, mudah, dan praktis.">
   <meta property="og:type" content="website">
@@ -34,14 +33,30 @@
       },
     }
   </script>
+
+  <!-- Anti-Conflict Styles Injection -->
+  <style>
+    /* Mencegah file CSS eksternal merusak layout Tailwind */
+    body.page-shell {
+      display: flex !important;
+      background-color: #020617 !important;
+      margin: 0 !important;
+      padding: 1rem !important;
+    }
+    .auth-layout {
+      display: grid !important;
+      max-width: 56rem !important;
+      width: 100% !important;
+    }
+  </style>
 </head>
 <body class="page-shell h-full font-sans antialiased text-slate-100 flex items-center justify-center p-4 sm:p-6 lg:p-8 relative min-h-screen">
 
-  <!-- Loader / Loading State (Aktif saat memuat halaman) -->
-  <div id="loading" class="loading-state fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md transition-opacity duration-300">
-    <div class="flex flex-col items-center gap-3 p-6 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-2xl">
-      <div class="w-9 h-9 border-3 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-      <p class="text-sm font-semibold tracking-wide text-slate-200">Memuat halaman...</p>
+  <!-- Loader Overlay (Modern UI with Smooth Fade-Out) -->
+  <div id="loading" class="loading-state fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md transition-all duration-500 ease-in-out">
+    <div class="flex flex-col items-center gap-3 p-6 rounded-2xl bg-slate-900/90 border border-slate-800/80 shadow-2xl shadow-indigo-500/10">
+      <div class="w-8 h-8 border-3 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+      <p class="text-xs font-semibold tracking-wide text-slate-300">Memuat halaman...</p>
     </div>
   </div>
 
@@ -111,23 +126,24 @@
 
   </main>
 
-  <!-- Script Penanganan Auto-Hide Loader -->
+  <!-- Auto Handler Loader Dismiss -->
   <script>
-    function hidePageLoader() {
-      const loader = document.getElementById('loading') || document.querySelector('.loading-state');
-      if (loader) {
+    function dismissLoader() {
+      const loader = document.getElementById('loading');
+      if (loader && loader.style.display !== 'none') {
         loader.style.opacity = '0';
+        loader.style.pointerEvents = 'none';
         setTimeout(() => {
           loader.style.display = 'none';
-        }, 300);
+        }, 500);
       }
     }
 
-    // Menutup loader otomatis ketika halaman selesai di-load
-    window.addEventListener('load', hidePageLoader);
+    // Hilangkan loader saat halaman selesai dimuat sepenuhnya
+    window.addEventListener('load', dismissLoader);
 
-    // Backup safety fallback: pastikan loader hilang maksimal dalam 2.5 detik
-    setTimeout(hidePageLoader, 2500);
+    // Proteksi batas waktu (maksimal 1.5 detik loader tampil)
+    setTimeout(dismissLoader, 1500);
   </script>
 
   <script defer src="assets/js/ui.js"></script>
