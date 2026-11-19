@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Order POP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="page-shell">
+  <main class="auth-layout compact">
+    <section class="brand-panel">
+      <div class="brand-mark">POP</div>
+      <h1>Masuk Akun</h1>
+      <p>Gunakan username dan kata sandi yang sudah terdaftar di data karyawan.</p>
+    </section>
+
+    <section class="auth-card">
+      <p class="eyebrow">Login</p>
+      <h2>Order POP</h2>
+      <div id="message" class="message hidden"></div>
+      <form id="loginForm" class="form-grid">
+        <label>
+          <span>Username</span>
+          <input type="text" id="username" name="username" autocomplete="username" required>
+        </label>
+        <label>
+          <span>Kata Sandi</span>
+          <input type="password" id="kataSandi" name="kata_sandi" autocomplete="current-password" required>
+        </label>
+        <button class="btn primary" type="submit">Login</button>
+      </form>
+      <p class="helper-link">Belum Mempunyai Akun? <a href="register.html">Daftar Di Sini!</a></p>
+    </section>
+  </main>
+  <script defer src="assets/js/ui.js"></script>
+  <script type="module" src="assets/js/login.js"></script>
+</body>
+</html>

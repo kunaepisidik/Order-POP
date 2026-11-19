@@ -1,0 +1,128 @@
+.absensi-body {
+  background: linear-gradient(180deg, #e8f5f3 0, #f6f7fb 300px), var(--bg);
+}
+
+.absensi-topbar {
+  background: transparent;
+  border-bottom: 0;
+}
+
+.absensi-topbar .topbar-actions {
+  flex-wrap: nowrap;
+}
+
+.absensi-container {
+  padding-top: 16px;
+}
+
+.absensi-card {
+  padding: clamp(22px, 6vw, 34px);
+}
+
+.absensi-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.absensi-heading .eyebrow {
+  margin-bottom: 4px;
+}
+
+.absensi-heading h2 {
+  margin: 0;
+  font-size: clamp(22px, 5vw, 28px);
+}
+
+.absensi-icon {
+  width: 52px;
+  height: 52px;
+  display: block;
+  flex: 0 0 auto;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #e8f5f3;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(24, 32, 51, 0.16);
+}
+
+.absensi-description {
+  margin: 18px 0 10px;
+}
+
+.attendance-today {
+  margin: 0 0 22px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  color: var(--primary-dark);
+  background: #e8f5f3;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+.absensi-note-label {
+  margin-bottom: 18px;
+}
+
+.absensi-primary-btn {
+  width: 100%;
+}
+
+#video-webcam,
+#foto-preview {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #172033;
+}
+
+.absensi-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.absensi-actions .btn:last-child {
+  flex: 1;
+}
+
+.absensi-time {
+  margin: 12px 0 18px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.absensi-alert {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.absensi-alert.success {
+  color: #05603a;
+  border-color: #abefc6;
+  background: #ecfdf3;
+}
+
+.absensi-alert.error {
+  color: #912018;
+  border-color: #fecdca;
+  background: #fef3f2;
+}
+
+@media (max-width: 480px) {
+  .absensi-topbar {
+    padding-top: 16px;
+    padding-bottom: 12px;
+  }
+
+  .absensi-container {
+    padding: 10px 16px 28px;
+  }
+}

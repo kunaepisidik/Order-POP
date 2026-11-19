@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akses Ditolak | 403 Forbidden</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            color: #f8fafc;
+        }
+
+        /* Ambient Background Glows */
+        .glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .glow-1 {
+            width: 300px;
+            height: 300px;
+            background: #ef4444;
+            top: 10%;
+            left: 20%;
+        }
+
+        .glow-2 {
+            width: 350px;
+            height: 350px;
+            background: #6366f1;
+            bottom: 10%;
+            right: 20%;
+        }
+
+        /* Main Container Card */
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 90%;
+            max-width: 520px;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Lock Visual Animation */
+        .icon-box {
+            position: relative;
+            width: 96px;
+            height: 96px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        .icon-box svg {
+            width: 48px;
+            height: 48px;
+            color: #f87171;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 25px 10px rgba(239, 68, 68, 0);
+            }
+        }
+
+        /* Typography */
+        .error-code {
+            display: inline-block;
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #f87171;
+            background: rgba(239, 68, 68, 0.15);
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+            line-height: 1.25;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        /* Button Group */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        @media (min-width: 480px) {
+            .button-group {
+                flex-direction: row;
+            }
+        }
+
+        .btn {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #ef4444;
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Footer Info */
+        .footer-note {
+            margin-top: 24px;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .footer-note a {
+            color: #f87171;
+            text-decoration: none;
+        }
+
+        .footer-note a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Lighting Effects -->
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+
+    <!-- Main Card -->
+    <div class="container">
+        <!-- Lock Icon -->
+        <div class="icon-box">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+            </svg>
+        </div>
+
+        <!-- Text Content -->
+        <span class="error-code">Error 403 • Akses Ditolak</span>
+        <h1>Halaman Tidak Dapat Diakses<br>Untuk Sementara</h1>
+        <p>Maaf, Anda tidak memiliki izin untuk membuka halaman ini. Silakan hubungi administrator jika Anda merasa ini adalah kesalahan.</p>
+
+        <!-- Actions -->
+        <div class="button-group">
+            <a href="/" class="btn btn-primary">
+                Kembali ke Beranda
+            </a>
+            <a href="javascript:history.back()" class="btn btn-secondary">
+                Halaman Sebelumnya
+            </a>
+        </div>
+
+        <!-- Help Footer -->
+        <div class="footer-note">
+            Butuh bantuan lebih lanjut? <a href="#">Hubungi Tim Dukungan</a>
+        </div>
+    </div>
+
+</body>
+</html>

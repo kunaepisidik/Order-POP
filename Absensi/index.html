@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f7fb">
+  <title>Absensi - Order POP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/absensi.css">
+  <link rel="icon" href="../favicon.png.png" type="image/x-icon">
+</head>
+<body class="app-body absensi-body">
+  <header class="topbar absensi-topbar">
+    <div>
+      <p class="eyebrow">Kehadiran</p>
+      <h1>Absensi</h1>
+    </div>
+    <div class="topbar-actions">
+      <a class="icon-btn" href="../Data_Absensi.html">Lihat Data</a>
+      <a id="absensi-back-link" class="icon-btn" href="../dashboard.html">Kembali</a>
+    </div>
+  </header>
+
+  <main class="mobile-container absensi-container">
+    <section class="content-card absensi-card" aria-labelledby="absensi-title">
+      <div class="absensi-heading">
+        <img id="attendance-user-photo" class="absensi-icon" src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png" alt="Foto profil pengguna">
+        <div>
+          <p class="eyebrow">Foto kehadiran</p>
+          <h2 id="absensi-title">Catat Kehadiran</h2>
+        </div>
+      </div>
+      <p class="muted absensi-description">Absen masuk saat mulai bekerja dan absen pulang saat selesai.</p>
+      <p id="attendance-today" class="attendance-today" role="status" aria-live="polite">Memeriksa absensi hari ini...</p>
+
+      <label class="absensi-note-label" for="attendance-note">
+        Keterangan <span class="field-note">Opsional. Dapat diperbarui sampai absen pulang.</span>
+        <textarea id="attendance-note" rows="3" maxlength="500" placeholder="Tulis keterangan jika diperlukan"></textarea>
+      </label>
+
+      <div id="status-alert" class="absensi-alert hidden" role="status" aria-live="polite"></div>
+
+      <div id="start-container">
+        <button type="button" id="btn-buka-kamera" class="btn primary absensi-primary-btn">
+          <span aria-hidden="true">📷</span> <span id="btn-buka-label">Absen Masuk</span>
+        </button>
+        <input type="file" id="input-file-cadangan" accept="image/*" capture="environment" class="hidden" aria-label="Ambil foto dari kamera perangkat">
+      </div>
+
+      <div id="camera-container" class="hidden">
+        <video id="video-webcam" autoplay playsinline muted aria-label="Tampilan kamera"></video>
+        <div class="absensi-actions">
+          <button type="button" id="btn-batal" class="btn secondary">Batal</button>
+          <button type="button" id="btn-ambil-foto" class="btn primary">Ambil Foto</button>
+        </div>
+      </div>
+
+      <div id="preview-container" class="hidden">
+        <img id="foto-preview" alt="Pratinjau foto absensi">
+        <p id="waktu-foto" class="muted absensi-time"></p>
+          <button type="button" id="btn-tutup-preview" class="btn secondary absensi-primary-btn">Lanjut</button>
+      </div>
+
+      <canvas id="canvas-capture" class="hidden"></canvas>
+    </section>
+  </main>
+
+  <script type="module" src="../assets/js/absensi.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f7fb">
+  <title>Data Absensi - Order POP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/absensi.css">
+  <link rel="stylesheet" href="assets/css/data-absensi.css">
+  <link rel="icon" href="favicon.png.png" type="image/x-icon">
+</head>
+<body class="app-body absensi-body">
+  <header class="topbar absensi-topbar">
+    <div>
+      <p class="eyebrow">Arsip Kehadiran</p>
+      <h1>Data Absensi</h1>
+    </div>
+    <a class="icon-btn" href="Absensi/index.html">Kembali</a>
+  </header>
+
+  <main class="mobile-container absensi-container">
+    <section class="content-card data-absensi-card" aria-labelledby="data-absensi-title">
+      <p class="eyebrow">Pilih periode</p>
+      <h2 id="data-absensi-title">Lihat Absensi Berdasarkan Tahun</h2>
+      <p class="muted data-absensi-description">Pilih tahun untuk melihat arsip absensi yang tersedia.</p>
+
+      <div id="years-loading" class="years-loading" role="status" aria-live="polite">
+        <span class="btn-spinner" aria-hidden="true"></span>
+        <span>Memuat daftar tahun...</span>
+      </div>
+      <div id="years-error" class="absensi-alert error hidden" role="alert"></div>
+      <p id="years-empty" class="empty-state hidden">Belum ada data absensi yang tersimpan.</p>
+      <div id="years-list" class="years-grid" aria-label="Daftar tahun absensi"></div>
+      <p id="selected-year" class="selected-year hidden" role="status" aria-live="polite"></p>
+
+      <section id="months-section" class="months-section hidden" aria-labelledby="months-title">
+        <h3 id="months-title">Pilih Bulan</h3>
+        <p id="months-description" class="muted months-description"></p>
+        <div id="months-loading" class="years-loading hidden" role="status" aria-live="polite">
+          <span class="btn-spinner" aria-hidden="true"></span>
+          <span>Memuat daftar bulan...</span>
+        </div>
+        <div id="months-error" class="absensi-alert error hidden" role="alert"></div>
+        <p id="months-empty" class="empty-state hidden">Tidak ada data bulan untuk tahun ini.</p>
+        <div id="months-list" class="years-grid" aria-label="Daftar bulan absensi"></div>
+        <p id="selected-month" class="selected-year hidden" role="status" aria-live="polite"></p>
+      </section>
+
+      <section id="calendar-section" class="calendar-section hidden" aria-labelledby="calendar-title">
+        <h3 id="calendar-title">Kalender Absensi</h3>
+        <p id="calendar-description" class="muted months-description"></p>
+        <div id="calendar-loading" class="years-loading hidden" role="status" aria-live="polite">
+          <span class="btn-spinner" aria-hidden="true"></span>
+          <span>Memuat tanggal absensi...</span>
+        </div>
+        <div id="calendar-error" class="absensi-alert error hidden" role="alert"></div>
+        <div class="calendar-weekdays" aria-hidden="true">
+          <span>Min</span><span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span>
+        </div>
+        <div id="calendar-grid" class="calendar-grid" aria-label="Tanggal dalam bulan terpilih"></div>
+        <div class="calendar-legend" aria-label="Keterangan status kalender">
+          <span><i class="legend-dot has-record"></i>Hadir</span>
+          <span><i class="legend-dot off"></i>Libur</span>
+          <span><i class="legend-dot note-status"></i>Ada keterangan</span>
+          <span><i class="legend-dot no-record"></i>Belum tercatat</span>
+        </div>
+        <section id="date-details" class="date-details hidden" aria-labelledby="date-details-title">
+          <h4 id="date-details-title"></h4>
+          <div id="date-details-content"></div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script type="module" src="assets/js/data-absensi.js"></script>
+</body>
+</html>

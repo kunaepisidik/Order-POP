@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 168">
+  <rect width="200" height="168" rx="14" fill="#eef7f6"/><rect x="24" y="12" width="152" height="144" rx="8" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="40" y="27" width="120" height="16" rx="4" fill="#0f766e"/><text x="100" y="38" fill="#fff" font-family="Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle">CONTOH DISPLAY POP</text>
+  <rect x="42" y="51" width="50" height="18" rx="4" fill="#e8f5f3"/><text x="67" y="63" fill="#334155" font-family="Arial,sans-serif" font-size="7" font-weight="700" text-anchor="middle">KATEGORI A</text>
+  <rect x="96" y="51" width="62" height="18" rx="4" fill="#e8f5f3"/><text x="127" y="63" fill="#334155" font-family="Arial,sans-serif" font-size="7" font-weight="700" text-anchor="middle">KATEGORI B</text>
+  <rect x="42" y="77" width="116" height="23" rx="5" fill="#f8fafc" stroke="#dbe3e8"/><text x="100" y="92" fill="#0f766e" font-family="Arial,sans-serif" font-size="10" font-weight="700" text-anchor="middle">Rp 99.000</text>
+  <rect x="42" y="106" width="116" height="23" rx="5" fill="#f8fafc" stroke="#dbe3e8"/><text x="100" y="121" fill="#0f766e" font-family="Arial,sans-serif" font-size="10" font-weight="700" text-anchor="middle">Rp 129.000</text>
+</svg>
