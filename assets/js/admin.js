@@ -2,7 +2,10 @@ import { clearSession, DEFAULT_PROFILE_PHOTO, deleteExpiredOrders, formatDate, h
 import { createNotification, initBrowserNotifications } from "./notifications.js";
 
 const admin = requireRole(["admin"]);
+<<<<<<< HEAD
 const adminAbsensiLink = document.getElementById("adminAbsensiLink");
+=======
+>>>>>>> 633220bc0ab09a6076cecea13d4e5f7280a7ee31
 const logoutBtn = document.getElementById("logoutBtn");
 const ordersContainer = document.getElementById("adminOrders");
 const emptyState = document.getElementById("emptyState");
@@ -24,10 +27,13 @@ if (admin && adminWelcomeText) {
   adminWelcomeText.textContent = admin.nama || admin.username || "Admin";
 }
 
+<<<<<<< HEAD
 if (admin?.role === "admin" && Number(admin.id) === 11) {
   adminAbsensiLink?.classList.remove("hidden");
 }
 
+=======
+>>>>>>> 633220bc0ab09a6076cecea13d4e5f7280a7ee31
 initBrowserNotifications(admin, {
   onNewNotification: () => loadOrders(),
 });
