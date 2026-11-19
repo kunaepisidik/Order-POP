@@ -4,6 +4,7 @@ const user = requireRole(["karyawan", "admin"]);
 const elements = {
   alert: document.getElementById("status-alert"),
   today: document.getElementById("attendance-today"),
+  complete: document.getElementById("attendance-complete"),
   profilePhoto: document.getElementById("attendance-user-photo"),
   backLink: document.getElementById("absensi-back-link"),
   note: document.getElementById("attendance-note"),
@@ -74,9 +75,9 @@ function renderToday() {
 
   const nextType = attendanceType();
   elements.openCamera.disabled = !nextType;
-  elements.openLabel.textContent = nextType
-    ? `Absen ${nextType === "masuk" ? "Masuk" : "Pulang"}`
-    : "Absensi hari ini lengkap";
+  elements.openCamera.classList.toggle("hidden", !nextType);
+  elements.complete.classList.toggle("hidden", Boolean(nextType));
+  if (nextType) elements.openLabel.textContent = `Absen ${nextType === "masuk" ? "Masuk" : "Pulang"}`;
 }
 
 async function loadTodayRecord() {

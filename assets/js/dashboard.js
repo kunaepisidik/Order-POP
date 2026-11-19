@@ -7,7 +7,6 @@ const dashboardName = document.getElementById("dashboardName");
 const dashboardUsername = document.getElementById("dashboardUsername");
 const dashboardBrand = document.getElementById("dashboardBrand");
 const logoutBtn = document.getElementById("logoutBtn");
-<<<<<<< HEAD
 const openTemplatePicker = document.getElementById("openTemplatePicker");
 const templatePicker = document.getElementById("templatePicker");
 
@@ -32,8 +31,6 @@ document.addEventListener("keydown", (event) => {
     closeTemplatePicker();
   }
 });
-=======
->>>>>>> 633220bc0ab09a6076cecea13d4e5f7280a7ee31
 
 if (user) {
   dashboardName.textContent = user.nama || user.username || "Karyawan";

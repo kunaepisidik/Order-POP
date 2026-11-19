@@ -61,6 +61,17 @@
   font-weight: 700;
 }
 
+.attendance-complete {
+  margin: 0;
+  padding: 13px 16px;
+  border: 1px solid #abefc6;
+  border-radius: 8px;
+  color: #05603a;
+  background: #ecfdf3;
+  text-align: center;
+  font-weight: 800;
+}
+
 .absensi-note-label {
   margin-bottom: 18px;
 }

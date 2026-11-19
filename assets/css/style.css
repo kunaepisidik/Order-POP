@@ -557,7 +557,6 @@ select:focus {
   background: #fff;
   box-shadow: 0 12px 30px rgba(24, 32, 51, 0.08);
   text-decoration: none;
-<<<<<<< HEAD
   width: 100%;
   text-align: left;
   font: inherit;
@@ -591,8 +590,6 @@ select:focus {
   .template-preview-image, .preview-other { width: 112px; height: 92px; }
   .template-option-copy strong { font-size: 15px; }
   .template-option-copy small { font-size: 13px; }
-=======
->>>>>>> 633220bc0ab09a6076cecea13d4e5f7280a7ee31
 }
 
 .dashboard-menu-tile:active {
